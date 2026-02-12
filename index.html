@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for love of my life · valentine envelope 💌</title>
+    <!-- romantic, two YES buttons → envelope with flying hearts + sliding letter -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffd9e2;
+            background: radial-gradient(circle at 20% 30%, #ffe7ef, #ffccd9);
+            font-family: 'Segoe UI', 'Quicksand', 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            transition: background 0.5s ease;
+        }
+
+        /* main valentine card container */
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: #fff9fbee;
+            backdrop-filter: blur(8px);
+            border-radius: 64px 64px 56px 56px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 50px #d45c7aaa;
+            border: 3px solid #ffb3c6;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* ---------- STAGE 1 : proposal, two yes buttons ---------- */
+        .stage-proposal {
+            display: block;
+        }
+
+        .hidden-stage {
+            display: none !important;
+        }
+
+        .cute-icon {
+            font-size: 4rem;
+            animation: float 2.4s infinite;
+            margin-bottom: 8px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ac3a5a;
+            text-shadow: 3px 3px 0 #ffe3e9;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .button-pair {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0 20px;
+        }
+
+        /* both YES buttons – same beautiful style */
+        .btn-yes {
+            background: #ff4d6d;
+            border: none;
+            border-bottom: 7px solid #9e1e3f;
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+            padding: 16px 44px;
+            border-radius: 100px;
+            cursor: pointer;
+            box-shadow: 0 14px 0 #6f142b, 0 12px 28px #ff6f8f;
+            transition: 0.06s linear;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 3px;
+        }
+
+        .btn-yes:hover {
+            background: #ff1f4a;
+            border-bottom-width: 3px;
+            transform: scale(0.96);
+            box-shadow: 0 6px 0 #6f142b, 0 18px 30px #ff4567;
+        }
+
+        .btn-yes:active {
+            transform: scale(0.92);
+        }
+
+        .love-note {
+            background: #ffeef2;
+            padding: 14px 26px;
+            border-radius: 50px;
+            color: #ad3f5e;
+            font-size: 1.25rem;
+            border: 2px dashed #ff889d;
+            display: inline-block;
+            margin-top: 16px;
+        }
+
+        /* ---------- STAGE 2 : envelope with magic ---------- */
+        .stage-envelope {
+            background: #ffe3ea;
+            border-radius: 48px;
+            padding: 24px 22px 36px;
+            border: 3px solid #ff98ab;
+            box-shadow: inset 0 0 0 4px #ffeef2, 0 12px 28px #d45a73;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== ENVELOPE ===== */
+        .envelope {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+            background: #ffb6c1;  /* base */
+            border-radius: 24px 24px 16px 16px;
+            box-shadow: 0 20px 0 #d46b7a, 0 20px 30px #b94760;
+            margin-top: 20px;
+            border: 3px solid #ff7a93;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 22px 32px;
+            transition: box-shadow 0.2s;
+            overflow: visible;  /* let hearts/balloons fly out */
+        }
+
+        /* flying hearts & balloons container — absolute within envelope */
+        .flyzone {
+            position: relative;
+            width: 100%;
+            min-height: 150px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            pointer-events: none;  /* so buttons still clickable */
+        }
+
+        /* hearts that fly upward + float */
+        .floating-heart {
+            position: relative;
+            display: inline-block;
+            font-size: 2.8rem;
+            animation: flyUp 3.5s infinite ease-in-out;
+            margin: 0 6px;
+            filter: drop-shadow(0 8px 12px rgba(200, 30, 70, 0.3));
+        }
+
+        @keyframes flyUp {
+            0% { transform: translateY(0) scale(0.9); opacity: 0.9; }
+            50% { transform: translateY(-38px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(0) scale(0.9); opacity: 0.9; }
+        }
+
+        /* balloons — same fly but different style */
+        .balloon {
+            position: relative;
+            display: inline-block;
+            font-size: 2.6rem;
+            animation: floatBalloon 4s infinite alternate;
+            margin: 0 5px;
+            filter: drop-shadow(0 10px 8px #d6336caa);
+        }
+
+        @keyframes floatBalloon {
+            0% { transform: translateY(0px) rotate(-2deg); }
+            100% { transform: translateY(-48px) rotate(3deg); }
+        }
+
+        /* --- THE LETTER — slides up & down inside envelope --- */
+        .letter-slider {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 8px;
+            transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        .letter-paper {
+            background: #fff9f2;
+            background-image: linear-gradient(145deg, #fff7ed, #fff1e6);
+            width: 90%;
+            border-radius: 24px 24px 18px 18px;
+            padding: 22px 18px;
+            border: 2px solid #ffb8c9;
+            box-shadow: 0 6px 0 #d68b99, 0 12px 24px rgba(150, 40, 60, 0.2);
+            color: #973d56;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.45s ease-out, margin 0.4s ease;
+            margin-bottom: 0px;
+            transform: translateY(0); /* base = fully inside (showing) */
+        }
+
+        /* slide-up state: letter peeks up, stays inside envelope */
+        .letter-slider.slide-up .letter-paper {
+            transform: translateY(-40px);
+            margin-bottom: -40px;   /* keep inside envelope, pulls up */
+            box-shadow: 0 16px 30px #c46a7a;
+        }
+
+        /* slide-down (closed) — letter goes back down */
+        .letter-slider.slide-down .letter-paper {
+            transform: translateY(0);
+            margin-bottom: 0;
+            box-shadow: 0 6px 0 #d68b99, 0 12px 24px rgba(150, 40, 60, 0.2);
+        }
+
+        /* envelope close/open buttons */
+        .envelope-actions {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin: 32px 0 12px;
+        }
+
+        .btn-envelope {
+            background: #ff829b;
+            border: none;
+            border-bottom: 5px solid #ad3b52;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.06s;
+            box-shadow: 0 8px 0 #73273a, 0 6px 20px #d65470;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn-envelope:hover {
+            background: #ff627f;
+            border-bottom-width: 2px;
+            transform: scale(0.96);
+        }
+
+        .btn-envelope:active {
+            transform: scale(0.92);
+        }
+
+        .btn-envelope.close {
+            background: #b84c5e;
+        }
+
+        /* message inside letter */
+        .signature {
+            font-size: 1.1rem;
+            color: #a13e53;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .footnote {
+            margin-top: 24px;
+            color: #bd5770;
+            font-size: 1.1rem;
+        }
+
+        /* responsive */
+        @media (max-width: 500px) {
+            .card { padding: 2rem 1.2rem; }
+            h1 { font-size: 1.9rem; }
+            .btn-yes { font-size: 1.6rem; padding: 14px 30px; }
+            .letter-paper { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="valentineCard">
+        <!-- ========== STAGE 1: ASK SANA, TWO YES BUTTONS ========= -->
+        <div id="proposalStage" class="stage-proposal">
+            <div class="cute-icon">💘🥰💘</div>
+            <h1>Sana, will you be <br> my Valentine?</h1>
+            <!-- TWO YES BUTTONS — both do exactly same: go to envelope stage -->
+            <div class="button-pair">
+                <button class="btn-yes" id="yesBtnLeft">
+                    <span>💖 YES</span>
+                </button>
+                <button class="btn-yes" id="yesBtnRight">
+                    <span>💗 YES</span>
+                </button>
+            </div>
+            <div class="love-note">
+                ✨ both buttons are YES — you can only say yes! ✨
+            </div>
+            <div class="footnote" style="margin-top: 30px;">
+                made with 🌹 for my Sana
+            </div>
+        </div>
+
+        <!-- ========== STAGE 2: ENVELOPE + HEARTS + BALLOONS + SLIDING LETTER ========= -->
+        <div id="envelopeStage" class="stage-envelope hidden-stage">
+            <div style="display: flex; justify-content: center; margin-bottom: 6px;">
+                <span style="font-size: 2.5rem;">💌</span>
+                <span style="font-size: 2rem; color:#b34a5e; margin-left: 8px;">for Sana</span>
+            </div>
+            
+            <!-- ENVELOPE magic area -->
+            <div class="envelope-container">
+                <div class="envelope">
+                    <!-- FLYING HEARTS & BALLOONS — animation up, lots of them! -->
+                    <div class="flyzone">
+                        <span class="floating-heart">❤️</span>
+                        <span class="floating-heart">🧡</span>
+                        <span class="floating-heart">💛</span>
+                        <span class="floating-heart">💚</span>
+                        <span class="floating-heart">💙</span>
+                        <span class="floating-heart">💜</span>
+                        <span class="floating-heart">🖤</span>
+                        <span class="floating-heart">🤍</span>
+                        <span class="floating-heart">🤎</span>
+                        <span class="floating-heart">❤️‍🔥</span>
+                        <!-- balloons that fly! -->
+                        <span class="balloon">🎈</span>
+                        <span class="balloon">🎈</span>
+                        <span class="balloon">🎈</span>
+                        <span class="balloon">🎈</span>
+                        <span class="balloon">🎈</span>
+                        <span class="balloon">🎈</span>
+                    </div>
+
+                    <!-- LETTER that slides up / stays inside envelope / slides down -->
+                    <div class="letter-slider" id="letterSlider">
+                        <div class="letter-paper">
+                            <!-- inner heartfelt letter 💌 -->
+                            <div style="font-size: 2rem; margin-bottom: 6px;">💘💖💘</div>
+                            <div style="font-size: 1.8rem; letter-spacing: 6px;">❤️❤️❤️</div>
+                            <p style="font-weight: 700; font-size: 1.6rem; color:#bc4e68;">Dearest Sana,</p>
+                            <p style="font-size: 1.2rem; margin: 6px 0;">you said YES! my heart is so full.</p>
+                            <p style="font-size: 1.3rem; font-weight: bold;">🌹 will you be mine? 🌹</p>
+                            <p style="font-size: 1.1rem;">i promise chocolate, flowers, <br>and all my love.</p>
+                            <div style="font-size: 2.2rem; margin-top: 6px;">💗</div>
+                            <div class="signature">yours, — your valentine 💌</div>
+                        </div>
+                    </div>
+                    <!-- small indication: envelope flap effect (cosmetic) -->
+                    <div style="font-size: 2rem; margin-top: 4px;">💞</div>
+                </div>
+
+                <!-- BUTTONS: open letter (slide up) & close envelope (slide down) -->
+                <div class="envelope-actions">
+                    <button class="btn-envelope" id="openLetterBtn">
+                        <span>📬</span> open letter
+                    </button>
+                    <button class="btn-envelope close" id="closeEnvelopeBtn">
+                        <span>📪</span> close
+                    </button>
+                </div>
+                <p style="color: #ad3f60; font-size: 1.1rem; margin-top: 12px; background: #ffeef4; padding: 8px 22px; border-radius: 50px;">
+                    ✨ hearts & balloons fly, letter slides up / down ✨
+                </p>
+            </div>
+            <div class="footnote" style="margin-top: 20px;">
+                💘 always yes, Sana 💘
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ---------- STAGE 1: proposal elements ----------
+            const proposalStage = document.getElementById('proposalStage');
+            const envelopeStage = document.getElementById('envelopeStage');
+            
+            // both yes buttons
+            const yesLeft = document.getElementById('yesBtnLeft');
+            const yesRight = document.getElementById('yesBtnRight');
+
+            // ---------- STAGE 2: envelope, letter slider, buttons ----------
+            const letterSlider = document.getElementById('letterSlider');
+            const openBtn = document.getElementById('openLetterBtn');
+            const closeBtn = document.getElementById('closeEnvelopeBtn');
+
+            // ---- FUNCTION to switch from proposal to envelope stage ----
+            function moveToEnvelopeStage() {
+                // hide proposal, show envelope
+                if (proposalStage && envelopeStage) {
+                    proposalStage.classList.add('hidden-stage');
+                    envelopeStage.classList.remove('hidden-stage');
+                }
+                // make background a bit warmer
+                document.body.style.background = 'radial-gradient(circle at 70% 20%, #ffdae2, #ffc1cd)';
+                
+                // ensure letter starts in 'slide-down' (closed) position inside envelope
+                if (letterSlider) {
+                    letterSlider.classList.remove('slide-up');
+                    letterSlider.classList.add('slide-down');
+                }
+
+                // extra: add flying hearts animation – they're already present
+            }
+
+            // ---- attach YES events to both buttons ----
+            if (yesLeft) {
+                yesLeft.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    moveToEnvelopeStage();
+                });
+            }
+            if (yesRight) {
+                yesRight.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    moveToEnvelopeStage();
+                });
+            }
+
+            // ---- ENVELOPE INTERACTIONS: open (slide up) / close (slide down) ----
+            if (openBtn) {
+                openBtn.addEventListener('click', function() {
+                    if (letterSlider) {
+                        // remove down, add up -> letter slides up, stays inside envelope
+                        letterSlider.classList.remove('slide-down');
+                        letterSlider.classList.add('slide-up');
+                    }
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    if (letterSlider) {
+                        // remove up, add down -> letter slides down, envelope closed
+                        letterSlider.classList.remove('slide-up');
+                        letterSlider.classList.add('slide-down');
+                    }
+                });
+            }
+
+            // ---- initial safe state: ensure envelope hidden, letter down ----
+            if (envelopeStage) envelopeStage.classList.add('hidden-stage');
+            if (letterSlider) {
+                letterSlider.classList.add('slide-down');  // start closed
+                letterSlider.classList.remove('slide-up');
+            }
+
+            // ---- add more floating hearts & balloon animation diversity (optional) ----
+            //    (already many in HTML, but we keep it lush)
+        })();
+    </script>
+
+    <!-- extra hidden balloons? just inject more cuteness via pseudo but already lots -->
+    <!-- both yes buttons proceed to envelope. envelope contains plenty hearts, balloons animation.
+         letter slides up (open) and down (close) – stays inside envelope, exactly as requested.
+         and the close button slides letter back down + envelope appears closed.  -->
+</body>
+</html>
