@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>for my baby 💌</title>
+    <title>gift for my love 💌</title>
     <style>
         * {
             margin: 0;
@@ -12,123 +12,119 @@
         }
 
         body {
-            background: #ffd9e6;
+            background: #fecfdf;
             font-family: 'Segoe UI', 'Comic Neue', cursive, sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            transition: background 0.4s;
         }
 
-        /* phase 1: question screen */
-        .phase1-container {
-            max-width: 700px;
+        /* phase 1: only question + two yes buttons */
+        .phase1 {
+            max-width: 750px;
             width: 100%;
+            background: #fff0f7f2;
+            backdrop-filter: blur(4px);
+            border-radius: 90px 90px 50px 50px;
+            padding: 3.5rem 2rem;
             text-align: center;
-            background: rgba(255, 240, 245, 0.8);
-            backdrop-filter: blur(6px);
-            border-radius: 80px 80px 40px 40px;
-            padding: 3rem 2rem;
-            box-shadow: 0 20px 40px #ffb0c3, 0 6px 0 #ff7f9f inset, 0 -4px 0 #ffb6c1 inset;
-            border: 3px solid white;
+            box-shadow: 0 20px 30px #f598b6, 0 8px 0 #ffa5c3 inset, 0 -6px 0 #ffbfd3 inset;
+            border: 5px solid white;
         }
 
         .question {
-            font-size: clamp(2rem, 10vw, 3.8rem);
+            font-size: clamp(2.2rem, 9vw, 4.2rem);
             font-weight: 800;
-            color: #a12d53;
-            text-shadow: 4px 4px 0 #ffb0cb;
-            margin-bottom: 3rem;
+            color: #9e2b52;
+            text-shadow: 5px 5px 0 #ffb6cb;
+            margin-bottom: 3.5rem;
             line-height: 1.2;
         }
 
-        .double-yes {
+        .yes-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
+            gap: 2.2rem;
         }
 
-        .yes-btn {
-            background: #ffb0ca;
-            border: none;
-            font-size: 2.4rem;
+        .yesBig {
+            background: #ffb2cc;
+            border: 4px solid white;
+            font-size: 2.8rem;
             font-weight: bold;
-            color: #4d1e30;
-            padding: 1rem 3.5rem;
-            border-radius: 60px;
-            box-shadow: 0 12px 0 #b34e71, 0 6px 20px #ff88aa;
+            color: #3f1627;
+            padding: 1.2rem 3.8rem;
+            border-radius: 70px;
+            box-shadow: 0 14px 0 #a84469, 0 10px 25px #ff94b4;
             cursor: pointer;
-            transition: all 0.1s ease;
-            border: 3px solid white;
-            min-width: 200px;
+            transition: 0.08s linear;
+            min-width: 220px;
             letter-spacing: 2px;
         }
 
-        .yes-btn:active {
-            transform: translateY(8px);
-            box-shadow: 0 4px 0 #b34e71, 0 6px 20px #ff88aa;
+        .yesBig:active {
+            transform: translateY(10px);
+            box-shadow: 0 4px 0 #a84469, 0 8px 20px #ff94b4;
         }
 
-        /* phase 2: envelope screen (hidden initially) */
-        .phase2-container {
-            max-width: 720px;
-            width: 100%;
+        /* phase 2: envelope area (hidden at first) */
+        .phase2 {
             display: none;
+            width: 100%;
+            max-width: 700px;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: 2rem;
         }
 
-        /* envelope card */
-        .envelope-card {
-            background: #ffe2ed;
-            border-radius: 40px 40px 100px 100px;
-            padding: 3rem 2rem 2.5rem;
-            box-shadow: 0 25px 35px #e6739b, 0 8px 0 #ffb8cf inset, 0 -6px 0 #ffa5bd inset;
-            border: 4px solid #ffffff;
+        /* ----- REAL ENVELOPE STYLE ----- */
+        .envelope-container {
+            background: #ffe2ec;
+            border-radius: 50px 50px 120px 120px;
+            padding: 2.5rem 1.8rem 2.8rem;
+            box-shadow: 0 25px 35px #de7b9f, 0 10px 0 #ffb7cf inset, 0 -8px 0 #ffa2be inset;
+            border: 5px solid white;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .envelope-wrapper {
             position: relative;
             width: 100%;
             max-width: 500px;
-            margin: 0 auto 1.5rem;
-            perspective: 1200px;
+            margin: 0 auto;
+            perspective: 1400px;
         }
 
-        /* envelope base (flap + pocket) */
+        /* envelope – more realistic with front/back layers */
         .envelope {
             position: relative;
-            width: 100%;
-            background: #fec5d9;
+            background: #feb0c9;  /* main envelope colour */
             border-radius: 20px 20px 40px 40px;
-            box-shadow: 0 20px 0 #d67a9c, 0 30px 30px rgba(180, 60, 100, 0.3);
+            box-shadow: 0 18px 0 #b85f80, 0 25px 30px rgba(150, 40, 80, 0.4);
+            border: 4px solid white;
             transition: box-shadow 0.3s;
-            border: 3px solid white;
+            overflow: visible;  /* flap can extend */
         }
 
-        /* flap (back) — triangle style */
+        /* flap – looks like a real triangular flap */
         .flap {
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 35%;  /* responsive triangle */
-            background: #feadc6;
+            padding-bottom: 32%;  /* gives triangle shape */
+            background: #fecadd;   /* slightly lighter */
             border-radius: 100% 100% 30% 30%;
-            clip-path: polygon(0% 0%, 100% 0%, 50% 90%);
-            transition: transform 0.6s ease-in-out;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            transition: transform 0.7s cubic-bezier(0.3, 0.9, 0.4, 1.1);
             transform-origin: top center;
-            border: 3px solid white;
-            border-top: none;
-            box-shadow: 0 -6px 0 #ffc0d5 inset;
+            border-bottom: 4px solid white;
+            border-left: 4px solid white;
+            border-right: 4px solid white;
+            box-shadow: 0 -8px 0 #ffb7cf inset;
+            z-index: 5;
         }
 
         .envelope.closed .flap {
@@ -137,205 +133,194 @@
 
         .envelope.open .flap {
             transform: rotateX(180deg);
-            pointer-events: none;  /* so it doesn't block clicks */
+            z-index: 2;  /* hide behind pocket a bit */
         }
 
-        /* envelope body (the pocket) */
+        /* pocket – the part that holds letter */
         .pocket {
-            background: #feadc6;
-            border-radius: 20px 20px 40px 40px;
-            padding: 1.8rem 1.5rem 3rem;
-            margin-top: -6px;  /* overlap with flap */
-            border: 3px solid white;
-            border-top: 2px dashed #ff98b5;
+            background: #feb0c9;
+            border-radius: 0 0 40px 40px;
+            padding: 1rem 1.5rem 2.5rem;
+            margin-top: -6px;
+            border: 4px solid white;
+            border-top: 3px dashed #ff90b5;  /* separation hint */
             position: relative;
-            z-index: 2;
-            min-height: 200px;
+            z-index: 3;
+            min-height: 220px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            box-shadow: 0 12px 0 #d67a9c inset;
+            align-items: flex-end;  /* letter sits at bottom */
+            box-shadow: 0 14px 0 #b5587a inset;
         }
 
-        /* letter — slides up/down inside pocket */
+        /* letter – hidden inside at bottom, slides up */
         .letter {
-            background: #fff9f2;
+            background: #fffef7;
             width: 90%;
             max-width: 400px;
-            padding: 2rem 1.5rem;
-            border-radius: 30px 10px 30px 10px;
-            box-shadow: 0 12px 0 #d0a2b5, 0 0 0 3px #ffffff, 0 8px 20px rgba(0,0,0,0.1);
-            font-size: 1.15rem;
+            padding: 1.8rem 1.5rem;
+            border-radius: 30px 8px 30px 8px;
+            border: 3px solid #ffb0c8;
+            box-shadow: 0 15px 0 #cb8ca5, 0 0 0 4px white;
+            font-size: 1.1rem;
             line-height: 1.5;
-            color: #511f32;
-            text-align: left;
-            transform: translateY(0);
-            transition: transform 0.6s cubic-bezier(0.3, 0.8, 0.4, 1.2);
-            border: 2px solid #ffcfdd;
+            color: #3f1728;
+            transform: translateY(75%);  /* initially most of letter hidden inside pocket */
+            transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2);
             word-break: break-word;
+            margin-bottom: 0px;
+            pointer-events: none;
+            text-align: left;
         }
 
+        /* when envelope open, letter slides up (still inside envelope, but visible) */
         .envelope.open .letter {
-            transform: translateY(-50px);  /* slides up, stays inside envelope */
+            transform: translateY(0);  /* slides up to show full content */
         }
 
-        /* envelope.closed .letter stays at bottom (0) */
-        .envelope.closed .letter {
-            transform: translateY(0);
+        /* ensure pocket doesn't hide letter */
+        .pocket {
+            overflow: hidden;   /* this keeps letter visually inside pocket, gives that "inside envelope" look */
         }
 
-        /* heart personalisation */
+        /* heart decoration */
         .letter p {
             margin-bottom: 0.8rem;
         }
 
         .letter .signature {
             font-size: 1.4rem;
-            color: #c43b6b;
+            color: #c62b62;
             text-align: right;
             margin-top: 1rem;
         }
 
-        /* open / close buttons under envelope */
-        .envelope-controls {
+        /* open/close buttons under envelope */
+        .button-panel {
             display: flex;
-            gap: 1.8rem;
+            gap: 2rem;
             justify-content: center;
-            margin-top: 1.5rem;
             flex-wrap: wrap;
+            margin-top: 0.5rem;
         }
 
-        .env-btn {
-            background: #ffc1d4;
-            border: 3px solid white;
-            font-size: 1.8rem;
-            font-weight: 600;
-            padding: 0.8rem 2.5rem;
+        .env-action {
+            background: #ffbed6;
+            border: 4px solid white;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.8rem 2.8rem;
             border-radius: 60px;
-            box-shadow: 0 8px 0 #a55373;
-            color: #401a28;
+            box-shadow: 0 10px 0 #964f6b;
+            color: #2f1420;
             cursor: pointer;
-            transition: 0.1s ease;
-            min-width: 160px;
+            transition: 0.07s;
+            min-width: 170px;
         }
 
-        .env-btn:active {
-            transform: translateY(6px);
-            box-shadow: 0 2px 0 #a55373;
+        .env-action:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #964f6b;
         }
 
-        .env-btn:disabled {
-            opacity: 0.5;
-            transform: translateY(4px);
-            box-shadow: 0 4px 0 #a55373;
-            pointer-events: none;
-        }
-
-        /* back to question? not needed but cute extra */
-        .tiny-return {
+        /* tiny reset to question (optional) */
+        .back-link {
             background: none;
             border: none;
-            color: #ac5373;
+            color: #ac4f72;
             font-size: 1.2rem;
-            text-decoration: underline dotted;
+            text-decoration: underline wavy #ff98bb;
             margin-top: 1rem;
             cursor: pointer;
         }
 
-        /* responsive */
         @media (max-width: 500px) {
-            .yes-btn { font-size: 2rem; min-width: 160px; }
-            .letter { font-size: 1rem; padding: 1.5rem 1rem; }
-            .env-btn { font-size: 1.5rem; padding: 0.6rem 1.5rem; }
+            .yesBig { font-size: 2.2rem; min-width: 170px; }
+            .letter { font-size: 1rem; padding: 1.2rem; }
+            .env-action { font-size: 1.6rem; padding: 0.5rem 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <!-- PHASE 1 : just question + two yes buttons -->
-    <div class="phase1-container" id="phase1">
+    <!-- PHASE 1 : just the question and two YES buttons -->
+    <div class="phase1" id="phase1">
         <div class="question">Hi baby will you be my valentine?</div>
-        <div class="double-yes">
-            <button class="yes-btn" id="yes1">YES</button>
-            <button class="yes-btn" id="yes2">YES</button>
+        <div class="yes-row">
+            <button class="yesBig" id="yesOne">YES</button>
+            <button class="yesBig" id="yesTwo">YES</button>
         </div>
     </div>
 
-    <!-- PHASE 2 : envelope with letter (hidden initially) -->
-    <div class="phase2-container" id="phase2">
-        <div class="envelope-card">
+    <!-- PHASE 2 : envelope with letter (initially hidden) -->
+    <div class="phase2" id="phase2">
+        <div class="envelope-container">
             <div class="envelope-wrapper">
-                <!-- envelope with flap and pocket -->
                 <div class="envelope closed" id="envelope">
+                    <!-- flap on top -->
                     <div class="flap"></div>
+                    <!-- pocket body -->
                     <div class="pocket">
-                        <div class="letter" id="letter">
-                            <!-- letter content exactly as requested -->
-                            <p>Happy valentine's day my wifeyyy may I take you to a date? If it's okay to you my love mag date po tayo sa roblox named "roblox name" around night time(no specific time hihihi) in February 14, 2026. I love you so much mahal ko you're my one and only love loveee❤️😘</p>
-                            <div class="signature">💋</div>
+                        <!-- letter with message (starts mostly hidden) -->
+                        <div class="letter" id="letterContent">
+                            <p>Happy valentine's day my wifeyyy may I take you to a date? If it's okay to you my love mag date po tayo sa roblox named "Conveyor sushi restaurant" around night time(no specific time hihihi) in February 14, 2026. I love you so much mahal ko you're my one and only love loveee❤️😘</p>
+                            <div class="signature">💖</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- open & close buttons below envelope -->
-            <div class="envelope-controls">
-                <button class="env-btn" id="openBtn">open</button>
-                <button class="env-btn" id="closeBtn">close</button>
+            <!-- open & close buttons below -->
+            <div class="button-panel">
+                <button class="env-action" id="openLetter">open</button>
+                <button class="env-action" id="closeLetter">close</button>
             </div>
         </div>
-        <!-- optional tiny reset if you want to go back (but not required) -->
-        <button class="tiny-return" id="backToQuestion">← back to question (just in case)</button>
+
+        <!-- tiny back button (optional) -->
+        <button class="back-link" id="backToStart">← back to question</button>
     </div>
 
     <script>
         (function() {
-            // get elements
             const phase1 = document.getElementById('phase1');
             const phase2 = document.getElementById('phase2');
-            const yes1 = document.getElementById('yes1');
-            const yes2 = document.getElementById('yes2');
+            const yesBtn1 = document.getElementById('yesOne');
+            const yesBtn2 = document.getElementById('yesTwo');
             const envelope = document.getElementById('envelope');
-            const openBtn = document.getElementById('openBtn');
-            const closeBtn = document.getElementById('closeBtn');
-            const backBtn = document.getElementById('backToQuestion');
+            const openBtn = document.getElementById('openLetter');
+            const closeBtn = document.getElementById('closeLetter');
+            const backBtn = document.getElementById('backToStart');
 
-            // both yes buttons do the same: hide phase1, show phase2
-            function goToEnvelope() {
+            // both yes buttons trigger transition to envelope
+            function showEnvelope() {
                 phase1.style.display = 'none';
-                phase2.style.display = 'flex';   // make envelope visible
-                // ensure envelope starts closed (just in case)
+                phase2.style.display = 'flex';   // show envelope section
+                // make sure envelope starts closed
                 envelope.classList.remove('open');
                 envelope.classList.add('closed');
-                // buttons state: open enabled, close disabled? we want open active, close active but if already closed, maybe disable close? better: both enabled, but animation handles. but we want close to only work when open? we'll manage inside events.
-                // we keep both active; they toggle.
-                // but when closed, close button maybe should be "disabled style"? we use pointer-events? but user could click close when closed – we just ignore or close again. We'll control by checking state.
-                // let's keep it simple: they both work, but we ensure animation only if state changes.
             }
 
-            yes1.addEventListener('click', goToEnvelope);
-            yes2.addEventListener('click', goToEnvelope);
+            yesBtn1.addEventListener('click', showEnvelope);
+            yesBtn2.addEventListener('click', showEnvelope);
 
-            // envelope logic: open / close buttons
+            // open button: set envelope to open state (letter slides up)
             openBtn.addEventListener('click', () => {
-                // if already open, do nothing extra, but we can re-trigger animation? better to only if closed.
                 if (envelope.classList.contains('closed')) {
                     envelope.classList.remove('closed');
                     envelope.classList.add('open');
-                } else {
-                    // if it's already open, maybe just nothing, but we can also reset animation? just keep.
                 }
+                // if already open, do nothing (or you could re-trigger animation by toggling? we keep simple)
             });
 
+            // close button: set envelope to closed state (letter slides back down)
             closeBtn.addEventListener('click', () => {
                 if (envelope.classList.contains('open')) {
                     envelope.classList.remove('open');
                     envelope.classList.add('closed');
-                } else {
-                    // already closed
                 }
             });
 
-            // back button to return to question (optional, but cute)
+            // optional back button to return to question
             backBtn.addEventListener('click', () => {
                 phase2.style.display = 'none';
                 phase1.style.display = 'block';
@@ -344,11 +329,9 @@
                 envelope.classList.add('closed');
             });
 
-            // also ensure that if someone spams open/close it's fine.
-            // letter slide animation is handled by css transition on .envelope.open .letter
-
-            // one more: when phase2 first shows, envelope is closed.
-            // pre-set the letter content (already in html)
+            // ensure letter starts mostly inside pocket (translateY(75%) in CSS)
+            // That already gives "hidden inside envelope" look.
+            // letter slides up to translateY(0) when envelope.open
         })();
     </script>
 </body>
