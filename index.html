@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>will you be my valentine, avril? 💖</title>
-    <!-- soft, playful vibe -->
+    <title>for my baby 💌</title>
     <style>
         * {
             margin: 0;
@@ -13,404 +12,343 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(145deg, #ffe6f0 0%, #ffd9e8 100%);
+            background: #ffd9e6;
+            font-family: 'Segoe UI', 'Comic Neue', cursive, sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            position: relative;
-            overflow-x: hidden;
+            transition: background 0.4s;
         }
 
-        /* floating hearts background (subtle) */
-        .heart-bg {
-            position: absolute;
-            font-size: 2rem;
-            user-select: none;
-            pointer-events: none;
-            color: rgba(255, 120, 160, 0.15);
-            animation: float 8s infinite ease-in-out;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(8deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-
-        /* main card */
-        .valentine-card {
-            max-width: 650px;
+        /* phase 1: question screen */
+        .phase1-container {
+            max-width: 700px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 60px 60px 40px 40px;
-            box-shadow: 0 25px 45px -10px rgba(210, 70, 120, 0.3),
-                        0 0 0 2px #fff8fb inset,
-                        0 0 0 4px #ffb6d1 inset;
-            padding: 2.5rem 2rem 3rem;
             text-align: center;
-            border: 1px solid white;
-            transition: 0.3s;
-            position: relative;
-            z-index: 10;
+            background: rgba(255, 240, 245, 0.8);
+            backdrop-filter: blur(6px);
+            border-radius: 80px 80px 40px 40px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 40px #ffb0c3, 0 6px 0 #ff7f9f inset, 0 -4px 0 #ffb6c1 inset;
+            border: 3px solid white;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #b3406c;
-            text-shadow: 3px 3px 0 #ffc2d9;
-            margin-bottom: 0.25rem;
-            word-break: break-word;
+        .question {
+            font-size: clamp(2rem, 10vw, 3.8rem);
+            font-weight: 800;
+            color: #a12d53;
+            text-shadow: 4px 4px 0 #ffb0cb;
+            margin-bottom: 3rem;
+            line-height: 1.2;
         }
 
-        .name-avril {
-            display: inline-block;
-            background: #ffd9e8;
-            padding: 0.2rem 1.2rem;
-            border-radius: 100px;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #a52d5c;
-            box-shadow: 0 5px 0 #ffa5c3;
-            margin: 0.5rem 0 1rem;
-            transform: rotate(-1deg);
-        }
-
-        .cute-question {
-            font-size: 1.9rem;
-            line-height: 1.3;
-            font-weight: 600;
-            color: #631f3a;
-            background: #fff0f7d6;
-            padding: 0.8rem 1.5rem;
-            border-radius: 80px;
-            display: inline-block;
-            margin: 1rem 0 2rem;
-            border: 2px dashed #ff90b5;
-            box-shadow: 0 8px 0 #e6a0b9;
-        }
-
-        .button-panel {
+        .double-yes {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.2rem;
-            margin: 2.2rem 0 1.8rem;
+            gap: 2rem;
         }
 
-        .btn {
+        .yes-btn {
+            background: #ffb0ca;
             border: none;
-            font-size: 1.8rem;
-            font-weight: 600;
-            padding: 1rem 2.8rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 0 #b34b6e, 0 4px 15px rgba(0, 0, 0, 0.1);
-            letter-spacing: 1px;
-            background: white;
-            color: #b33b66;
-            border: 2px solid #ffb0c7;
-            flex: 0 1 auto;
-            min-width: 180px;
-        }
-
-        .btn-yes {
-            background: #ffadc9;
-            color: #4b1f30;
-            box-shadow: 0 10px 0 #b34b6e, 0 4px 15px #ff9bbd;
-        }
-
-        .btn-yes:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 0 #b34b6e, 0 8px 20px #ffb0c7;
-            background: #ffbdd5;
-        }
-
-        .btn-no {
-            background: #ffeef4;
-            color: #a53f63;
-            box-shadow: 0 10px 0 #b37792, 0 4px 12px #d0a0b2;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* playful "no" hiding / running away */
-        .btn-no:hover {
-            background: #ffe2ed;
-            transform: translate(8px, -6px) scale(1.05);
-            box-shadow: 0 8px 0 #b37792, 0 8px 20px #e1a6bb;
-        }
-
-        /* message area */
-        .response-message {
-            background: #ffffffdd;
+            font-size: 2.4rem;
+            font-weight: bold;
+            color: #4d1e30;
+            padding: 1rem 3.5rem;
             border-radius: 60px;
-            padding: 1.5rem 2rem;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #b63b64;
+            box-shadow: 0 12px 0 #b34e71, 0 6px 20px #ff88aa;
+            cursor: pointer;
+            transition: all 0.1s ease;
             border: 3px solid white;
-            box-shadow: 0 4px 0 #ffbed3, 0 10px 25px #ffc0d0;
-            margin: 2rem 0 1rem;
-            min-height: 5rem;
-            backdrop-filter: blur(4px);
-            transition: 0.2s;
-            word-break: break-word;
+            min-width: 200px;
+            letter-spacing: 2px;
         }
 
-        .heart-emoji {
-            font-size: 3rem;
-            display: inline-block;
-            filter: drop-shadow(2px 4px 4px #ff88b0);
-            animation: pulse 1.2s infinite;
+        .yes-btn:active {
+            transform: translateY(8px);
+            box-shadow: 0 4px 0 #b34e71, 0 6px 20px #ff88aa;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        /* phase 2: envelope screen (hidden initially) */
+        .phase2-container {
+            max-width: 720px;
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
         }
 
-        .secret-note {
-            margin-top: 2rem;
-            color: #a54f71;
-            font-size: 1.2rem;
-            opacity: 0.8;
+        /* envelope card */
+        .envelope-card {
+            background: #ffe2ed;
+            border-radius: 40px 40px 100px 100px;
+            padding: 3rem 2rem 2.5rem;
+            box-shadow: 0 25px 35px #e6739b, 0 8px 0 #ffb8cf inset, 0 -6px 0 #ffa5bd inset;
+            border: 4px solid #ffffff;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            perspective: 1200px;
+        }
+
+        /* envelope base (flap + pocket) */
+        .envelope {
+            position: relative;
+            width: 100%;
+            background: #fec5d9;
+            border-radius: 20px 20px 40px 40px;
+            box-shadow: 0 20px 0 #d67a9c, 0 30px 30px rgba(180, 60, 100, 0.3);
+            transition: box-shadow 0.3s;
+            border: 3px solid white;
+        }
+
+        /* flap (back) — triangle style */
+        .flap {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 35%;  /* responsive triangle */
+            background: #feadc6;
+            border-radius: 100% 100% 30% 30%;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 90%);
+            transition: transform 0.6s ease-in-out;
+            transform-origin: top center;
+            border: 3px solid white;
+            border-top: none;
+            box-shadow: 0 -6px 0 #ffc0d5 inset;
+        }
+
+        .envelope.closed .flap {
+            transform: rotateX(0deg);
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            pointer-events: none;  /* so it doesn't block clicks */
+        }
+
+        /* envelope body (the pocket) */
+        .pocket {
+            background: #feadc6;
+            border-radius: 20px 20px 40px 40px;
+            padding: 1.8rem 1.5rem 3rem;
+            margin-top: -6px;  /* overlap with flap */
+            border: 3px solid white;
+            border-top: 2px dashed #ff98b5;
+            position: relative;
+            z-index: 2;
+            min-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.3rem;
-            background: #fccfdf70;
-            padding: 0.5rem 1.8rem;
-            border-radius: 100px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            box-shadow: 0 12px 0 #d67a9c inset;
         }
 
-        /* illustration of tiny avril style */
-        .chibi-avril {
-            font-size: 3.8rem;
-            line-height: 1;
-            margin: 0.5rem 0 0;
-            filter: drop-shadow(0 6px 0 #e598b0);
+        /* letter — slides up/down inside pocket */
+        .letter {
+            background: #fff9f2;
+            width: 90%;
+            max-width: 400px;
+            padding: 2rem 1.5rem;
+            border-radius: 30px 10px 30px 10px;
+            box-shadow: 0 12px 0 #d0a2b5, 0 0 0 3px #ffffff, 0 8px 20px rgba(0,0,0,0.1);
+            font-size: 1.15rem;
+            line-height: 1.5;
+            color: #511f32;
+            text-align: left;
+            transform: translateY(0);
+            transition: transform 0.6s cubic-bezier(0.3, 0.8, 0.4, 1.2);
+            border: 2px solid #ffcfdd;
+            word-break: break-word;
         }
 
-        footer {
-            margin-top: 2rem;
-            color: #b35f80;
-            font-size: 1rem;
-            opacity: 0.8;
+        .envelope.open .letter {
+            transform: translateY(-50px);  /* slides up, stays inside envelope */
         }
 
-        /* mobile fine-tune */
+        /* envelope.closed .letter stays at bottom (0) */
+        .envelope.closed .letter {
+            transform: translateY(0);
+        }
+
+        /* heart personalisation */
+        .letter p {
+            margin-bottom: 0.8rem;
+        }
+
+        .letter .signature {
+            font-size: 1.4rem;
+            color: #c43b6b;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        /* open / close buttons under envelope */
+        .envelope-controls {
+            display: flex;
+            gap: 1.8rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .env-btn {
+            background: #ffc1d4;
+            border: 3px solid white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 0 #a55373;
+            color: #401a28;
+            cursor: pointer;
+            transition: 0.1s ease;
+            min-width: 160px;
+        }
+
+        .env-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #a55373;
+        }
+
+        .env-btn:disabled {
+            opacity: 0.5;
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #a55373;
+            pointer-events: none;
+        }
+
+        /* back to question? not needed but cute extra */
+        .tiny-return {
+            background: none;
+            border: none;
+            color: #ac5373;
+            font-size: 1.2rem;
+            text-decoration: underline dotted;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        /* responsive */
         @media (max-width: 500px) {
-            .valentine-card { padding: 1.5rem 1rem 2rem; }
-            h1 { font-size: 2.3rem; }
-            .cute-question { font-size: 1.5rem; }
-            .btn { font-size: 1.5rem; padding: 0.8rem 1.5rem; min-width: 140px; }
-            .response-message { font-size: 1.6rem; }
+            .yes-btn { font-size: 2rem; min-width: 160px; }
+            .letter { font-size: 1rem; padding: 1.5rem 1rem; }
+            .env-btn { font-size: 1.5rem; padding: 0.6rem 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- some floating background hearts (random) -->
-    <div class="heart-bg" style="top: 5%; left: 3%;">💗</div>
-    <div class="heart-bg" style="top: 15%; right: 2%; font-size: 3rem;">🌸</div>
-    <div class="heart-bg" style="bottom: 12%; left: 8%;">💖</div>
-    <div class="heart-bg" style="bottom: 20%; right: 12%;">💞</div>
-    <div class="heart-bg" style="top: 25%; left: 20%;">🥰</div>
-    <div class="heart-bg" style="top: 80%; right: 18%;">💘</div>
-    <div class="heart-bg" style="bottom: 5%; left: 25%;">💕</div>
-    <div class="heart-bg" style="top: 45%; right: 25%;">💓</div>
-
-    <!-- main card -->
-    <div class="valentine-card">
-        <div class="chibi-avril">🎸✨🖤</div>
-        <h1>💌 a very important question 💌</h1>
-        <div class="name-avril">for Avril</div>
-
-        <div class="cute-question">
-            ⭐ will you be my Valentine? ⭐
+    <!-- PHASE 1 : just question + two yes buttons -->
+    <div class="phase1-container" id="phase1">
+        <div class="question">Hi baby will you be my valentine?</div>
+        <div class="double-yes">
+            <button class="yes-btn" id="yes1">YES</button>
+            <button class="yes-btn" id="yes2">YES</button>
         </div>
+    </div>
 
-        <!-- interactive buttons -->
-        <div class="button-panel">
-            <button class="btn btn-yes" id="yesBtn">💖 YES! 💖</button>
-            <button class="btn btn-no" id="noBtn">🙈 no thanks 🙈</button>
+    <!-- PHASE 2 : envelope with letter (hidden initially) -->
+    <div class="phase2-container" id="phase2">
+        <div class="envelope-card">
+            <div class="envelope-wrapper">
+                <!-- envelope with flap and pocket -->
+                <div class="envelope closed" id="envelope">
+                    <div class="flap"></div>
+                    <div class="pocket">
+                        <div class="letter" id="letter">
+                            <!-- letter content exactly as requested -->
+                            <p>Happy valentine's day my wifeyyy may I take you to a date? If it's okay to you my love mag date po tayo sa roblox named "roblox name" around night time(no specific time hihihi) in February 14, 2026. I love you so much mahal ko you're my one and only love loveee❤️😘</p>
+                            <div class="signature">💋</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- open & close buttons below envelope -->
+            <div class="envelope-controls">
+                <button class="env-btn" id="openBtn">open</button>
+                <button class="env-btn" id="closeBtn">close</button>
+            </div>
         </div>
-
-        <!-- sweet response shows up here -->
-        <div class="response-message" id="responseMsg">
-            <span class="heart-emoji">❤️</span> waiting for you... <span class="heart-emoji">❤️</span>
-        </div>
-
-        <!-- extra cute detail -->
-        <div class="secret-note">
-            <span>🍬</span> click yes for a sweet surprise <span>🍬</span>
-        </div>
-
-        <footer>
-            ⚡ made with lots of glitter & eyeliner ⚡
-        </footer>
+        <!-- optional tiny reset if you want to go back (but not required) -->
+        <button class="tiny-return" id="backToQuestion">← back to question (just in case)</button>
     </div>
 
     <script>
         (function() {
-            const yesBtn = document.getElementById('yesBtn');
-            const noBtn = document.getElementById('noBtn');
-            const responseDiv = document.getElementById('responseMsg');
+            // get elements
+            const phase1 = document.getElementById('phase1');
+            const phase2 = document.getElementById('phase2');
+            const yes1 = document.getElementById('yes1');
+            const yes2 = document.getElementById('yes2');
+            const envelope = document.getElementById('envelope');
+            const openBtn = document.getElementById('openBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const backBtn = document.getElementById('backToQuestion');
 
-            // playful, affectionate responses for YES
-            const yesMessages = [
-                "💖 YAY! 💖 I'll pick you up at 7! 🎸",
-                "✨ BEST VALENTINE'S DAY EVER! ✨ can't wait, avril!",
-                "🌸 you just made my whole year! 🌸",
-                "💕 100% YES! let's get ice cream and skate! 💕",
-                "🥳 it's a date!!! 🥳 get ready for roses & punk rock!",
-                "💗 avril said YES!!! my heart is exploding 💗",
-                "🎸 HELL YEAH! gonna write you a song! 🎶",
-                "💘 *does happy dance* 💘 see you feb 14th!",
-            ];
-
-            // For the "no" button – but we'll make it tricky and eventually give in.
-            const noMessages = [
-                "🙈 oh.. but maybe...? 🙈",
-                "😢 try again? i'll be extra sweet! 😢",
-                "🥺 click yes instead? pretty please? 🥺",
-                "💔 avril... don't break my heart 💔",
-                "😤 i don't accept that! 😤 try YES!",
-                "🌟 the YES button is cuter, you know! 🌟",
-                "🎀 no doesn't exist in valentine world 🎀",
-                "💢 system override: turn no into YES 💢",
-            ];
-
-            // Function to get random array element
-            function randomMsg(arr) {
-                return arr[Math.floor(Math.random() * arr.length)];
+            // both yes buttons do the same: hide phase1, show phase2
+            function goToEnvelope() {
+                phase1.style.display = 'none';
+                phase2.style.display = 'flex';   // make envelope visible
+                // ensure envelope starts closed (just in case)
+                envelope.classList.remove('open');
+                envelope.classList.add('closed');
+                // buttons state: open enabled, close disabled? we want open active, close active but if already closed, maybe disable close? better: both enabled, but animation handles. but we want close to only work when open? we'll manage inside events.
+                // we keep both active; they toggle.
+                // but when closed, close button maybe should be "disabled style"? we use pointer-events? but user could click close when closed – we just ignore or close again. We'll control by checking state.
+                // let's keep it simple: they both work, but we ensure animation only if state changes.
             }
 
-            // Yes button action – pure happiness
-            yesBtn.addEventListener('click', () => {
-                const msg = randomMsg(yesMessages);
-                responseDiv.innerHTML = `💞✨ ${msg} ✨💞`;
-                // extra sparkle effect: change background of message temporarily
-                responseDiv.style.background = "#ffe4f3";
-                responseDiv.style.transition = "0.3s";
-                setTimeout(() => {
-                    responseDiv.style.background = "#ffffffdd";
-                }, 400);
+            yes1.addEventListener('click', goToEnvelope);
+            yes2.addEventListener('click', goToEnvelope);
 
-                // add a fun surprise: create floating hearts around yes button? just a lil dom change
-                const extraHeart = document.createElement('span');
-                extraHeart.innerText = ' 💖 ';
-                extraHeart.style.fontSize = '2.5rem';
-                extraHeart.style.animation = 'pulse 1s infinite';
-                responseDiv.appendChild(extraHeart);
-                // but keep it tidy – remove after 3 seconds
-                setTimeout(() => {
-                    if (extraHeart.parentNode === responseDiv) {
-                        extraHeart.remove();
-                    }
-                }, 3000);
-            });
-
-            // No button – evasive, playful, and eventually surrenders to YES
-            noBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // sometimes change position (playful runaway)
-                const randomLeft = Math.floor(Math.random() * 70) + 15;  // vw-ish
-                const randomTop = Math.floor(Math.random() * 60) + 20;   // vh-ish
-                // but keep it inside viewport roughly, and only apply sometimes
-                if (Math.random() > 0.45) {  // ~55% chance of moving
-                    noBtn.style.transform = `translate(${Math.random() > 0.5 ? '50px' : '-40px'}, ${Math.random() > 0.5 ? '-20px' : '30px'}) scale(1.05)`;
-                    noBtn.style.transition = 'transform 0.2s ease';
+            // envelope logic: open / close buttons
+            openBtn.addEventListener('click', () => {
+                // if already open, do nothing extra, but we can re-trigger animation? better to only if closed.
+                if (envelope.classList.contains('closed')) {
+                    envelope.classList.remove('closed');
+                    envelope.classList.add('open');
                 } else {
-                    // reset position slightly (but don't completely reset to keep it fun)
-                    noBtn.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
-                }
-
-                // If clicked many times, maybe after several attempts we force a yes?
-                // We'll count no-clicks, and on 5th click pretend "no" turns into yes.
-                if (!window.noClickCount) window.noClickCount = 0;
-                window.noClickCount += 1;
-
-                // if they click more than 5 times, start forcing yes
-                if (window.noClickCount >= 5) {
-                    responseDiv.innerHTML = `😆😆 just kidding, avril! you know you can't escape... YES! 💖✨`;
-                    responseDiv.style.background = "#ffe0f0";
-                    // also change no button to yes? we can rename it
-                    noBtn.innerText = '💖 YES! 💖';
-                    noBtn.classList.remove('btn-no');
-                    noBtn.classList.add('btn-yes');
-                    // make it redirect to yes function
-                    noBtn.removeEventListener('click', arguments.callee);
-                    noBtn.addEventListener('click', () => {
-                        responseDiv.innerHTML = `💞✨ ${randomMsg(yesMessages)} ✨💞`;
-                    });
-                    // also trigger a yes vibe
-                    return;
-                }
-
-                // otherwise show a reluctant no message
-                let msg = randomMsg(noMessages);
-                // if it's the 3rd or 4th click, make it softer
-                if (window.noClickCount === 3) msg = "🙊 maybe yes?? i'm confused... 🙊";
-                if (window.noClickCount === 4) msg = "🍫 okay fine, i'll say... no... just kidding! 🍫";
-                responseDiv.innerHTML = `😿 ${msg} 😿`;
-
-                // also gradually make the no button smaller / less appealing? just for fun
-                if (window.noClickCount > 2) {
-                    noBtn.style.fontSize = '1.7rem';
-                    noBtn.style.padding = '0.9rem 2.2rem';
-                }
-                if (window.noClickCount > 3) {
-                    // soften the shadow
-                    noBtn.style.boxShadow = '0 5px 0 #b37792';
-                }
-
-                // add a little shake
-                noBtn.style.animation = 'none';
-                noBtn.offsetHeight; // reflow
-                noBtn.style.animation = 'pulse 0.3s 2';
-            });
-
-            // Also if they hover over no button there's a chance it dodges (extra fun)
-            noBtn.addEventListener('mouseenter', () => {
-                // only if not clicked many times (dodge chance)
-                if (window.noClickCount < 5 && Math.random() > 0.5) {
-                    noBtn.style.transform = `translate(${Math.random() * 40 - 20}px, ${Math.random() * 30 - 15}px)`;
+                    // if it's already open, maybe just nothing, but we can also reset animation? just keep.
                 }
             });
 
-            noBtn.addEventListener('mouseleave', () => {
-                // reset a bit, but keep some randomness
-                if (window.noClickCount < 5) {
-                    noBtn.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 8 - 4}px)`;
+            closeBtn.addEventListener('click', () => {
+                if (envelope.classList.contains('open')) {
+                    envelope.classList.remove('open');
+                    envelope.classList.add('closed');
+                } else {
+                    // already closed
                 }
             });
 
-            // double-tap protection / make it all cute
-            // extra: click on background hearts? not needed
-
-            // yes button hover effect stays positive
-            yesBtn.addEventListener('mouseenter', () => {
-                responseDiv.style.background = "#fff0fb";
-            });
-            yesBtn.addEventListener('mouseleave', () => {
-                responseDiv.style.background = "#ffffffdd";
+            // back button to return to question (optional, but cute)
+            backBtn.addEventListener('click', () => {
+                phase2.style.display = 'none';
+                phase1.style.display = 'block';
+                // reset envelope to closed for next time
+                envelope.classList.remove('open');
+                envelope.classList.add('closed');
             });
 
-            // initial message
-            responseDiv.innerHTML = '💗💗 will you be my valentine, avril? 💗💗';
+            // also ensure that if someone spams open/close it's fine.
+            // letter slide animation is handled by css transition on .envelope.open .letter
+
+            // one more: when phase2 first shows, envelope is closed.
+            // pre-set the letter content (already in html)
         })();
     </script>
 </body>
