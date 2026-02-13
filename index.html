@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gift for my love 💌</title>
+    <title>for my valentine ❤️</title>
     <style>
         * {
             margin: 0;
@@ -12,33 +12,63 @@
         }
 
         body {
-            background: #fecfdf;
-            font-family: 'Segoe UI', 'Comic Neue', cursive, sans-serif;
             min-height: 100vh;
+            font-family: 'Segoe UI', 'Comic Neue', cursive, sans-serif;
+            background: #ffdee9;  /* warm base */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* random red hearts background (phase1 + phase2) */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;  /* so clicks pass through */
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.5;
+            color: #ff3b6f;
+            animation: floatHeart 8s infinite ease-in-out;
+            user-select: none;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-40px) rotate(15deg); opacity: 0.8; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
         }
 
         /* phase 1: only question + two yes buttons */
         .phase1 {
-            max-width: 750px;
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
             width: 100%;
-            background: #fff0f7f2;
-            backdrop-filter: blur(4px);
-            border-radius: 90px 90px 50px 50px;
+            background: rgba(255, 240, 248, 0.85);
+            backdrop-filter: blur(6px);
+            border-radius: 100px 100px 60px 60px;
             padding: 3.5rem 2rem;
             text-align: center;
-            box-shadow: 0 20px 30px #f598b6, 0 8px 0 #ffa5c3 inset, 0 -6px 0 #ffbfd3 inset;
-            border: 5px solid white;
+            box-shadow: 0 20px 35px #f28eb3, 0 10px 0 #ffb6cf inset, 0 -8px 0 #ffbfd6 inset;
+            border: 6px solid white;
         }
 
         .question {
-            font-size: clamp(2.2rem, 9vw, 4.2rem);
+            font-size: clamp(2.4rem, 10vw, 4.5rem);
             font-weight: 800;
-            color: #9e2b52;
-            text-shadow: 5px 5px 0 #ffb6cb;
+            color: #a02d55;
+            text-shadow: 4px 4px 0 #ffb0cb, 6px 6px 0 rgba(255, 80, 130, 0.3);
             margin-bottom: 3.5rem;
             line-height: 1.2;
         }
@@ -47,202 +77,106 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2.2rem;
+            gap: 2.5rem;
         }
 
         .yesBig {
-            background: #ffb2cc;
-            border: 4px solid white;
-            font-size: 2.8rem;
+            background: #ffb2cd;
+            border: 5px solid white;
+            font-size: 3rem;
             font-weight: bold;
-            color: #3f1627;
-            padding: 1.2rem 3.8rem;
-            border-radius: 70px;
-            box-shadow: 0 14px 0 #a84469, 0 10px 25px #ff94b4;
+            color: #3f1728;
+            padding: 1.2rem 4rem;
+            border-radius: 80px;
+            box-shadow: 0 15px 0 #a8476b, 0 10px 30px #ff88b0;
             cursor: pointer;
             transition: 0.08s linear;
-            min-width: 220px;
-            letter-spacing: 2px;
+            min-width: 240px;
+            letter-spacing: 3px;
         }
 
         .yesBig:active {
-            transform: translateY(10px);
-            box-shadow: 0 4px 0 #a84469, 0 8px 20px #ff94b4;
+            transform: translateY(11px);
+            box-shadow: 0 4px 0 #a8476b, 0 10px 25px #ff88b0;
         }
 
-        /* phase 2: envelope area (hidden at first) */
+        /* phase 2: letter screen (hidden initially) */
         .phase2 {
+            position: relative;
+            z-index: 10;
             display: none;
+            max-width: 750px;
             width: 100%;
-            max-width: 700px;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
+            background: rgba(255, 245, 250, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 70px 70px 30px 30px;
+            padding: 3rem 2.2rem;
+            box-shadow: 0 25px 40px #e07ca3, 0 10px 0 #ffb7d0 inset, 0 -8px 0 #ffc0d5 inset;
+            border: 6px solid white;
+            text-align: center;
         }
 
-        /* ----- REAL ENVELOPE STYLE ----- */
-        .envelope-container {
-            background: #ffe2ec;
-            border-radius: 50px 50px 120px 120px;
-            padding: 2.5rem 1.8rem 2.8rem;
-            box-shadow: 0 25px 35px #de7b9f, 0 10px 0 #ffb7cf inset, 0 -8px 0 #ffa2be inset;
-            border: 5px solid white;
-            width: 100%;
-        }
-
-        .envelope-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            perspective: 1400px;
-        }
-
-        /* envelope – more realistic with front/back layers */
-        .envelope {
-            position: relative;
-            background: #feb0c9;  /* main envelope colour */
-            border-radius: 20px 20px 40px 40px;
-            box-shadow: 0 18px 0 #b85f80, 0 25px 30px rgba(150, 40, 80, 0.4);
-            border: 4px solid white;
-            transition: box-shadow 0.3s;
-            overflow: visible;  /* flap can extend */
-        }
-
-        /* flap – looks like a real triangular flap */
-        .flap {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 32%;  /* gives triangle shape */
-            background: #fecadd;   /* slightly lighter */
-            border-radius: 100% 100% 30% 30%;
-            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-            transition: transform 0.7s cubic-bezier(0.3, 0.9, 0.4, 1.1);
-            transform-origin: top center;
-            border-bottom: 4px solid white;
-            border-left: 4px solid white;
-            border-right: 4px solid white;
-            box-shadow: 0 -8px 0 #ffb7cf inset;
-            z-index: 5;
-        }
-
-        .envelope.closed .flap {
-            transform: rotateX(0deg);
-        }
-
-        .envelope.open .flap {
-            transform: rotateX(180deg);
-            z-index: 2;  /* hide behind pocket a bit */
-        }
-
-        /* pocket – the part that holds letter */
-        .pocket {
-            background: #feb0c9;
-            border-radius: 0 0 40px 40px;
-            padding: 1rem 1.5rem 2.5rem;
-            margin-top: -6px;
-            border: 4px solid white;
-            border-top: 3px dashed #ff90b5;  /* separation hint */
-            position: relative;
-            z-index: 3;
-            min-height: 220px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;  /* letter sits at bottom */
-            box-shadow: 0 14px 0 #b5587a inset;
-        }
-
-        /* letter – hidden inside at bottom, slides up */
-        .letter {
-            background: #fffef7;
-            width: 90%;
-            max-width: 400px;
-            padding: 1.8rem 1.5rem;
-            border-radius: 30px 8px 30px 8px;
-            border: 3px solid #ffb0c8;
-            box-shadow: 0 15px 0 #cb8ca5, 0 0 0 4px white;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: #3f1728;
-            transform: translateY(75%);  /* initially most of letter hidden inside pocket */
-            transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            word-break: break-word;
-            margin-bottom: 0px;
-            pointer-events: none;
-            text-align: left;
-        }
-
-        /* when envelope open, letter slides up (still inside envelope, but visible) */
-        .envelope.open .letter {
-            transform: translateY(0);  /* slides up to show full content */
-        }
-
-        /* ensure pocket doesn't hide letter */
-        .pocket {
-            overflow: hidden;   /* this keeps letter visually inside pocket, gives that "inside envelope" look */
-        }
-
-        /* heart decoration */
-        .letter p {
-            margin-bottom: 0.8rem;
-        }
-
-        .letter .signature {
+        /* letter style — romantic and soft */
+        .love-letter {
+            background: #fffdf5;
+            padding: 2.5rem 2rem;
+            border-radius: 50px 15px 50px 15px;
+            border: 5px solid #ffb7cf;
+            box-shadow: 0 20px 0 #c8799b, 0 0 0 7px white;
             font-size: 1.4rem;
-            color: #c62b62;
-            text-align: right;
-            margin-top: 1rem;
+            line-height: 1.7;
+            color: #2f1422;
+            text-align: left;
+            word-break: break-word;
         }
 
-        /* open/close buttons under envelope */
-        .button-panel {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
+        .love-letter p {
+            margin-bottom: 1.5rem;
         }
 
-        .env-action {
-            background: #ffbed6;
-            border: 4px solid white;
+        .love-letter .signature {
             font-size: 2rem;
-            font-weight: 700;
-            padding: 0.8rem 2.8rem;
-            border-radius: 60px;
-            box-shadow: 0 10px 0 #964f6b;
-            color: #2f1420;
-            cursor: pointer;
-            transition: 0.07s;
-            min-width: 170px;
+            color: #c9185a;
+            text-align: right;
+            margin-top: 2rem;
+            font-weight: 600;
         }
 
-        .env-action:active {
-            transform: translateY(8px);
-            box-shadow: 0 2px 0 #964f6b;
+        .heart-emoji-big {
+            font-size: 2.8rem;
+            display: inline-block;
+            animation: pulse 1.2s infinite;
         }
 
-        /* tiny reset to question (optional) */
-        .back-link {
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* tiny return button (optional) */
+        .back-to-question {
             background: none;
             border: none;
-            color: #ac4f72;
+            color: #a13b60;
             font-size: 1.2rem;
-            text-decoration: underline wavy #ff98bb;
-            margin-top: 1rem;
+            text-decoration: underline dotted #ff9bbd;
+            margin-top: 1.8rem;
             cursor: pointer;
         }
 
-        @media (max-width: 500px) {
-            .yesBig { font-size: 2.2rem; min-width: 170px; }
-            .letter { font-size: 1rem; padding: 1.2rem; }
-            .env-action { font-size: 1.6rem; padding: 0.5rem 1.8rem; }
+        /* responsive */
+        @media (max-width: 550px) {
+            .yesBig { font-size: 2.3rem; min-width: 180px; padding: 1rem 2rem; }
+            .love-letter { font-size: 1.2rem; padding: 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <!-- PHASE 1 : just the question and two YES buttons -->
+    <!-- random red hearts background container (js will populate) -->
+    <div class="floating-hearts" id="heartContainer"></div>
+
+    <!-- PHASE 1: question + two yes buttons -->
     <div class="phase1" id="phase1">
         <div class="question">Hi baby will you be my valentine?</div>
         <div class="yes-row">
@@ -251,87 +185,71 @@
         </div>
     </div>
 
-    <!-- PHASE 2 : envelope with letter (initially hidden) -->
+    <!-- PHASE 2: the letter (hidden at first) -->
     <div class="phase2" id="phase2">
-        <div class="envelope-container">
-            <div class="envelope-wrapper">
-                <div class="envelope closed" id="envelope">
-                    <!-- flap on top -->
-                    <div class="flap"></div>
-                    <!-- pocket body -->
-                    <div class="pocket">
-                        <!-- letter with message (starts mostly hidden) -->
-                        <div class="letter" id="letterContent">
-                            <p>Happy valentine's day my wifeyyy may I take you to a date? If it's okay to you my love mag date po tayo sa roblox named "Conveyor sushi restaurant" around night time(no specific time hihihi) in February 14, 2026. I love you so much mahal ko you're my one and only love loveee❤️😘</p>
-                            <div class="signature">💖</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- open & close buttons below -->
-            <div class="button-panel">
-                <button class="env-action" id="openLetter">open</button>
-                <button class="env-action" id="closeLetter">close</button>
+        <div class="love-letter">
+            <p>Happy valentine's day my wifeyyy may I take you to a date? If it's okay to you my love mag date po tayo sa roblox named "roblox name" around night time(no specific time hihihi) in February 14, 2026. I love you so much mahal ko you're my one and only love loveee❤️😘</p>
+            <div class="signature">
+                <span class="heart-emoji-big">❤️</span> i love you <span class="heart-emoji-big">❤️</span>
             </div>
         </div>
-
-        <!-- tiny back button (optional) -->
-        <button class="back-link" id="backToStart">← back to question</button>
+        <!-- small button to go back (just for fun) -->
+        <button class="back-to-question" id="backBtn">← write again?</button>
     </div>
 
     <script>
         (function() {
-            const phase1 = document.getElementById('phase1');
-            const phase2 = document.getElementById('phase2');
-            const yesBtn1 = document.getElementById('yesOne');
-            const yesBtn2 = document.getElementById('yesTwo');
-            const envelope = document.getElementById('envelope');
-            const openBtn = document.getElementById('openLetter');
-            const closeBtn = document.getElementById('closeLetter');
-            const backBtn = document.getElementById('backToStart');
+            // ----- generate random red hearts in background -----
+            const heartContainer = document.getElementById('heartContainer');
+            const heartCount = 35; // number of floating hearts
 
-            // both yes buttons trigger transition to envelope
-            function showEnvelope() {
-                phase1.style.display = 'none';
-                phase2.style.display = 'flex';   // show envelope section
-                // make sure envelope starts closed
-                envelope.classList.remove('open');
-                envelope.classList.add('closed');
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                // random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                // random size
+                const size = Math.random() * 2.5 + 1.2; // rem
+                // random animation delay
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 6 + 5; // 5-11s
+                // random heart symbol
+                const hearts = ['❤️', '🧡', '💖', '💗', '💘', '💝', '♥️', '💕'];
+                const symbol = hearts[Math.floor(Math.random() * hearts.length)];
+
+                heart.style.left = left + '%';
+                heart.style.top = top + '%';
+                heart.style.fontSize = size + 'rem';
+                heart.style.animationDelay = delay + 's';
+                heart.style.animationDuration = duration + 's';
+                heart.textContent = symbol;
+                heartContainer.appendChild(heart);
             }
 
-            yesBtn1.addEventListener('click', showEnvelope);
-            yesBtn2.addEventListener('click', showEnvelope);
+            // ----- phase management -----
+            const phase1 = document.getElementById('phase1');
+            const phase2 = document.getElementById('phase2');
+            const yes1 = document.getElementById('yesOne');
+            const yes2 = document.getElementById('yesTwo');
+            const backBtn = document.getElementById('backBtn');
 
-            // open button: set envelope to open state (letter slides up)
-            openBtn.addEventListener('click', () => {
-                if (envelope.classList.contains('closed')) {
-                    envelope.classList.remove('closed');
-                    envelope.classList.add('open');
-                }
-                // if already open, do nothing (or you could re-trigger animation by toggling? we keep simple)
-            });
+            // both yes buttons do the same: hide phase1, show phase2
+            function showLetter() {
+                phase1.style.display = 'none';
+                phase2.style.display = 'block';
+            }
 
-            // close button: set envelope to closed state (letter slides back down)
-            closeBtn.addEventListener('click', () => {
-                if (envelope.classList.contains('open')) {
-                    envelope.classList.remove('open');
-                    envelope.classList.add('closed');
-                }
-            });
+            yes1.addEventListener('click', showLetter);
+            yes2.addEventListener('click', showLetter);
 
             // optional back button to return to question
             backBtn.addEventListener('click', () => {
                 phase2.style.display = 'none';
                 phase1.style.display = 'block';
-                // reset envelope to closed for next time
-                envelope.classList.remove('open');
-                envelope.classList.add('closed');
             });
 
-            // ensure letter starts mostly inside pocket (translateY(75%) in CSS)
-            // That already gives "hidden inside envelope" look.
-            // letter slides up to translateY(0) when envelope.open
+            // hearts remain all the time, no extra action needed
         })();
     </script>
 </body>
