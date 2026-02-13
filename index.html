@@ -14,24 +14,26 @@
         }
 
         .pocket {
-            width: 0;
-            height: 200px; 
+            width: 280px; /* Total width = left border 140px + right border 140px */
+            height: 200px;
             border-left: 140px solid #f5a3a2;
             border-right: 140px solid #f5a3a2;
             border-top: 90px solid transparent;
+            border-bottom: none;
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
             position: relative;
+            box-sizing: border-box;
         }
 
         .letter {
-            position: relative;
+            position: absolute;
             background-color: #fff;
             width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            height: 90%;
-            top: 5%;
+            left: 5%;
+            right: 5%;
+            height: 85%;
+            bottom: 7%;
             border-radius: 6px;
             font-family: 'Dancing Script', cursive;
             display: flex;
@@ -40,13 +42,28 @@
             font-size: 1.5rem;
             color: #333;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        /* Optional: Add a flap shadow effect */
+        .pocket::before {
+            content: '';
+            position: absolute;
+            top: -90px;
+            left: -140px;
+            width: 0;
+            height: 0;
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-bottom: 90px solid #e08f8e;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
     <div class="pocket">
         <div class="letter">
-            💌 Hello
+            💌 Hello!
         </div>
     </div>
 </body>
